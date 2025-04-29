@@ -1,13 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.b2966c4a.css",
-    "main.js": "/static/js/main.8b98ae1d.js",
-    "index.html": "/index.html",
-    "main.b2966c4a.css.map": "/static/css/main.b2966c4a.css.map",
-    "main.8b98ae1d.js.map": "/static/js/main.8b98ae1d.js.map"
+    "main.js": "/traigent-web/static/js/main.58988b71.js",
+    "index.html": "/traigent-web/index.html",
+    "main.58988b71.js.map": "/traigent-web/static/js/main.58988b71.js.map"
   },
   "entrypoints": [
-    "static/css/main.b2966c4a.css",
-    "static/js/main.8b98ae1d.js"
+    "static/js/main.58988b71.js"
   ]
 }
