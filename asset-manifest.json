@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/traigent-web/static/js/main.58988b71.js",
+    "main.js": "/traigent-web/static/js/main.b06c05b2.js",
     "index.html": "/traigent-web/index.html",
-    "main.58988b71.js.map": "/traigent-web/static/js/main.58988b71.js.map"
+    "main.b06c05b2.js.map": "/traigent-web/static/js/main.b06c05b2.js.map"
   },
   "entrypoints": [
-    "static/js/main.58988b71.js"
+    "static/js/main.b06c05b2.js"
   ]
 }
