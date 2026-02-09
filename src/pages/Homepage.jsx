@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, ChevronRight, ExternalLink, Zap, GitBranch, Shield, FileText, Play, Pause } from "lucide-react";
 import { Link } from "react-router-dom";
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 // Placeholder for the Button component
 const Button = ({ children, className, onClick, size }) => (
@@ -131,7 +133,7 @@ export default function Homepage() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight mb-6"
             >
-              <span className="block">Ship AI Like Software</span>
+              <span className="block">Ship AI Agents Like Software</span>
               <span className="block text-2xl md:text-3xl lg:text-4xl font-semibold text-slate-200 mt-3">
                 Gated, Optimized, and Regression-Safe
               </span>
@@ -285,7 +287,7 @@ export default function Homepage() {
               transition={{ duration: 0.5 }}
               className="text-3xl md:text-4xl font-bold text-gray-900 mb-6"
             >
-              The AI Engineering Control Layer
+              The Agent Engineering Control Layer
             </motion.h2>
             <p className="text-xl text-gray-600">
               Traigent gives you the primitives to specify, evaluate, optimize, and apply agent configurations—systematically.
@@ -548,7 +550,7 @@ constraints:
                 One Decorator. Instant Optimization.
               </h2>
               <p className="text-lg text-gray-600 mb-6">
-                No rewrites. Just attach to your existing AI calls, specify what you want (and your constraints), then apply the best config—no dashboard required.
+                No rewrites. Just attach to your existing agent calls, specify what you want (and your constraints), then apply the best config—no dashboard required.
               </p>
               <ul className="space-y-3">
                 <li className="flex items-center gap-3 text-gray-700">
@@ -578,26 +580,44 @@ constraints:
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
                 <span className="ml-2">my_agent.py</span>
               </div>
-              <pre className="text-slate-300 overflow-x-auto">
-                <code>{`import asyncio
-import traigent
-from traigent.api.decorators import EvaluationOptions
-	
+              <SyntaxHighlighter
+                language="python"
+                style={vscDarkPlus}
+                customStyle={{
+                  margin: 0,
+                  padding: 0,
+                  background: 'transparent',
+                  fontSize: '0.875rem',
+                }}
+                showLineNumbers={false}
+              >
+{`import traigent
+from langchain_openai import ChatOpenAI
+
 @traigent.optimize(
     configuration_space={
         "model": ["gpt-4o-mini", "gpt-4o"],
-        "temperature": [0.0, 0.3, 0.7],
+        "temperature": [0.1, 0.5, 0.9],
+        "use_rag": [True, False],
+        "top_k": [1, 2, 3],
     },
     objectives=["accuracy", "cost"],
-    evaluation=EvaluationOptions(eval_dataset="eval.jsonl"),
+    eval_dataset="eval.jsonl",
 )
-def analyze_document(doc: str) -> str:
-    # Your existing AI logic — unchanged
-    return llm_call(doc)
+def answer_question(question: str) -> str:
+    config = traigent.get_config()
 
-result = asyncio.run(analyze_document.optimize(algorithm="random", max_trials=20))
-analyze_document.apply_best_config(result)`}</code>
-              </pre>
+    # Tuned variables from config
+    model = config["model"]
+    temperature = config["temperature"]
+    use_rag = config["use_rag"]
+    top_k = config["top_k"]
+
+    context = retrieve_docs(question, k=top_k) if use_rag else ""
+
+    llm = ChatOpenAI(model=model, temperature=temperature)
+    return llm.invoke(f"{context}\\n\\nQ: {question}").content`}
+              </SyntaxHighlighter>
             </motion.div>
           </div>
         </div>
@@ -617,7 +637,7 @@ analyze_document.apply_best_config(result)`}</code>
               Start Engineering Your Agents
             </motion.h2>
             <p className="text-xl opacity-90 mb-10">
-              Join teams shipping AI with the same rigor as software. Specify. Evaluate. Optimize. Apply.
+              Join teams shipping agents with the same rigor as software. Specify. Evaluate. Optimize. Apply.
             </p>
             <motion.div
               initial={{ opacity: 0 }}
@@ -653,7 +673,7 @@ analyze_document.apply_best_config(result)`}</code>
             <div>
               <div className="text-xl font-bold mb-4">Traigent</div>
               <p className="text-slate-400 mb-6 max-w-xs">
-                The AI engineering control layer. Specify. Evaluate. Optimize. Apply.
+                The agent control layer. Specify. Evaluate. Optimize. Apply.
               </p>
             </div>
 
@@ -702,6 +722,8 @@ analyze_document.apply_best_config(result)`}</code>
 
           <div className="border-t border-slate-800 mt-12 pt-8 text-center text-slate-500">
             <p>© {new Date().getFullYear()} Traigent Ltd. All rights reserved.</p>
+            <p></p>
+            <p>v-tw-251216</p>
           </div>
         </div>
       </footer>
