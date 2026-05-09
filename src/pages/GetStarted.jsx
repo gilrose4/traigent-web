@@ -1,6 +1,7 @@
 import React from "react";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
+import InstallCommand from "../components/InstallCommand";
 
 const createPageUrl = (path) => path;
 
@@ -22,50 +23,57 @@ export default function GetStarted() {
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="p-6 rounded-xl bg-slate-900/60 border border-slate-800">
+          <div className="p-6 rounded-xl bg-slate-900/60 border border-slate-800 flex flex-col">
             <h2 className="text-xl font-semibold mb-2">TVL (Specification)</h2>
-            <p className="text-slate-300 mb-6">
+            <p className="text-slate-300 mb-6 flex-grow">
               Write a TVL module that captures the tunable decisions, objectives, and constraints for your agentic system.
             </p>
             <div className="flex flex-wrap gap-3">
               <a
-                href="https://www.tvl-lang.org/getting-started/"
+                href="https://www.tvl-lang.org/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center font-medium bg-white text-slate-900 hover:bg-gray-100 px-5 py-3 rounded-lg"
               >
-                TVL getting started
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </a>
-              <a
-                href="https://www.tvl-lang.org/reference/language/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center font-medium bg-transparent border border-slate-700 text-slate-200 hover:bg-white/5 px-5 py-3 rounded-lg"
-              >
-                Language reference
+                Learn TVL
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </div>
           </div>
 
-          <div className="p-6 rounded-xl bg-slate-900/60 border border-slate-800">
+          <div className="p-6 rounded-xl bg-slate-900/60 border border-slate-800 flex flex-col">
             <h2 className="text-xl font-semibold mb-2">Traigent SDK</h2>
-            <p className="text-slate-300 mb-4">
-              Attach to your existing AI calls with a decorator, run governed optimization on real workloads, and apply the best config. Follow the SDK docs to install and get started.
+            <p className="text-slate-300 mb-4 flex-grow">
+              Attach to your existing AI calls with a decorator, run governed optimization on real workloads, and apply the best config. The bundled <code className="px-1 py-0.5 rounded bg-slate-800 text-sm">traigent quickstart</code> demo runs locally in mock mode — no API keys, no LLM provider calls — so you can validate the pipeline before pointing it at real LLMs.
             </p>
+            <InstallCommand
+              command='uv tool install "traigent[recommended]" && traigent quickstart'
+              secondary="Prefer pip? `pip install` is a drop-in replacement."
+              className="mb-4"
+            />
             <div className="flex flex-wrap gap-3">
               <a
-                href="https://cal.com/nimrod-busany"
+                href="https://github.com/Traigent/Traigent"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center font-medium bg-white text-slate-900 hover:bg-gray-100 px-5 py-3 rounded-lg"
               >
-                Request SDK access
+                View on GitHub
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>
             </div>
           </div>
+        </div>
+
+        <div className="mt-10 p-6 rounded-xl bg-slate-900/60 border border-slate-800">
+          <h2 className="text-xl font-semibold mb-2">Drive it from your coding agent</h2>
+          <p className="text-slate-300 mb-4 max-w-3xl">
+            Claude Code, Cursor, Codex, Gemini CLI and 30+ other agents pick up the Traigent skill bundle automatically. They&apos;ll guide you through dry-run-first setup, generate the eval dataset, and apply the best config — without you leaving your editor.
+          </p>
+          <InstallCommand
+            command="npx skills add Traigent/agents-skills"
+            secondary="Pick the traigent-* skills from the interactive list. The bundle includes a dry-run-first orchestrator that validates the full pipeline at zero cost before any real spend."
+          />
         </div>
 
         <div className="mt-12 p-6 rounded-xl bg-gradient-to-br from-indigo-600/20 to-purple-700/20 border border-white/10">
@@ -74,7 +82,7 @@ export default function GetStarted() {
             Git hooks and GitHub Actions are included in the SDK. Want managed CI/CD dashboards, team analytics, and audit trails? Let's talk about enterprise options.
           </p>
           <a
-            href="https://cal.com/nimrod-busany"
+            href="https://calendar.app.google/VLcx8bnYahw37jva9"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center font-medium bg-white text-slate-900 hover:bg-gray-100 px-6 py-3 rounded-lg"
